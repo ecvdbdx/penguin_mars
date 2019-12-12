@@ -1,12 +1,12 @@
 import React from 'react';
 import { fetchRoverPhotos, fetchAllRoverPhotos } from './api.js';
-import Card from './components/Card';
+import CardList from './components/CardList';
 import './App.css';
 
 function App() {
   fetchAllRoverPhotos({ earth_date: '2019-7-12' });
   return (
-    <div>x
+    <div>
       <header>
         <h1>Mars App</h1>
       </header>
