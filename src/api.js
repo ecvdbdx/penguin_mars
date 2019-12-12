@@ -13,15 +13,11 @@ const fetchAllRoverPhotos = params => {
     api_key: secret.apiKey
   };
 
-  Promise.all([
+  return Promise.all([
     fetchRoverPhotos('curiosity', params),
     fetchRoverPhotos('spirit', params),
     fetchRoverPhotos('opportunity', params)
-  ]).then(responses => {
-    responses.forEach(response => {
-      console.log(response.data);
-    });
-  });
+  ]);
 };
 
 export { fetchRoverPhotos, fetchAllRoverPhotos };
