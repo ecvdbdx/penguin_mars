@@ -13,7 +13,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetchAllRoverPhotos({ earth_date: '2019-7-12' })
+    fetchAllRoverPhotos({ earth_date: '2019-7-13' })
       .then(responses => {
         const photos = responses
           .map(response => response.data)
@@ -39,10 +39,7 @@ class App extends React.Component {
     const content = this.renderGallery();
 
     return (
-      <div>
-        <header>
-          <h1>Mars App</h1>
-        </header>
+      <div className="gallery">
         {content}
       </div>
     );
