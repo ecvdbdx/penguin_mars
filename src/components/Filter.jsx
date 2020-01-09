@@ -8,7 +8,7 @@ export default props => {
   });
   const cameraOptions = props.cameras.map(camera => {
     return (
-      <option key={camera.id} value={camera.id}>{camera.full_name}</option>
+      <option key={camera.id} value={camera.id}>{camera.fullName}</option>
     );
   });
 
