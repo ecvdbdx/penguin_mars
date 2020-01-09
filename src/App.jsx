@@ -14,9 +14,7 @@ class App extends React.Component {
 
   componentDidMount() {
     fetchAllRoverPhotos({ earth_date: '2019-7-13' })
-      .then(photos => {
-        this.setState({ photos });
-      })
+      .then(photos => this.setState({ photos }))
       .catch(error => {
         console.log(error);
       });

@@ -14,7 +14,7 @@ const fetchRoverPhotos = (roverName, date) => {
 
 const removeDuplicates = photos => {
   return photos.filter((photo, index) => {
-    if (index === 0) return true;
+    if (!index) return true;
     const camera = photo.camera.full_name;
     const rover = photo.rover.name;
     const previousCamera = photos[index - 1].camera.full_name;
