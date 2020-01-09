@@ -1,6 +1,7 @@
 import React from 'react';
 import fetchAllRoverPhotos from './services/roverApi.js';
 import CardList from './components/CardList';
+import Filter from './components/Filter';
 import './App.css';
 
 class App extends React.Component {
@@ -8,7 +9,9 @@ class App extends React.Component {
     super();
 
     this.state = {
-      photos: []
+      photos: [],
+      rovers: [],
+      cameras: []
     };
   }
 
@@ -20,14 +23,33 @@ class App extends React.Component {
       });
   }
 
+  renderFilter() {
+    return (
+      <div className="filter-container">
+        <Filter rovers={this.state.rovers} cameras={this.state.cameras}/>
+      </div>
+    );
+  }
+
   renderGallery() {
-    return <CardList photos={this.state.photos} />;
+    return (
+      <div className="gallery">
+        <CardList photos={this.state.photos} />
+      </div>
+    );
   }
 
   render() {
+    const filter = this.renderFilter();
     const content = this.renderGallery();
-    return <div className="gallery">{content}</div>;
-  }
-}
+
+    return (
+      <>
+        {filter}
+        {content}
+      </>
+    );
+  };
+};
 
 export default App;
