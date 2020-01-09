@@ -28,7 +28,6 @@ class App extends React.Component {
 
   render() {
     const content = this.renderGallery();
-
     return <div className="gallery">{content}</div>;
   }
 }

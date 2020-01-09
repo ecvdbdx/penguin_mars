@@ -1,5 +1,6 @@
 import axios from 'axios';
 import secret from '../secret.js';
+import shuffleArray from './../helpers/functions/shuffleArray';
 
 const url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/';
 
@@ -9,6 +10,18 @@ const fetchRoverPhotos = (roverName, date) => {
     earth_date: date
   };
   return axios.get(`${url}${roverName}/photos`, { params });
+};
+
+const removeDuplicates = photos => {
+  return photos.filter((photo, index) => {
+    if (index === 0) return true;
+    const camera = photo.camera.full_name;
+    const rover = photo.rover.name;
+    const previousCamera = photos[index - 1].camera.full_name;
+    const previousRover = photos[index - 1].rover.name;
+    if (camera !== previousCamera || rover !== previousRover) return true;
+    return false;
+  });
 };
 
 const fetchAllRoverPhotos = () => {
@@ -24,9 +37,8 @@ const fetchAllRoverPhotos = () => {
       fetchRoverPhotos('opportunity', '2015-6-30')
     ])
       .then(responses => {
-        const photos = responses.map(response => response.data.photos).flat();
-        // 1. Retirer les doublons
-        // 2. Mélanger le tableau
+        let photos = responses.map(response => response.data.photos).flat();
+        photos = shuffleArray(removeDuplicates(photos));
         resolve(photos);
       })
       .catch(error => {
